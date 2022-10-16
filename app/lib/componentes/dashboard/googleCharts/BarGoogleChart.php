@@ -24,6 +24,7 @@ class BarGoogleChart implements  BarChart
        $this->id=$id;
     }
 
+    
     /**
      * @return mixed
      */
