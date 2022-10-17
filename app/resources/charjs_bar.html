@@ -1,0 +1,52 @@
+<!--[main]-->
+<div class="chart-container" style="position: relative; height:{$height}vh; width:{$width}vw; background-color: white">
+<canvas id="chart_{$uniqid}"></canvas>
+</div>
+
+<script>
+const ctx = document.getElementById('chart_{$uniqid}').getContext('2d');
+const data={$data|raw}
+const label=data.map(d=>d[0]).filter((d,index)=>index>0)
+const dataChart=data.map(d=>d[1]).filter((d,index)=>index>0)
+var options = {
+    maintainAspectRatio: false,
+    scales: {
+        y: {
+            stacked: true,
+            grid: {
+                display: true,
+                color: "rgba(255,99,132,0.2)"
+            }
+        },
+        x: {
+            grid: {
+                display: false
+            }
+        }
+    }
+};
+const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: label,
+        datasets: [{
+            label: "{$title}",
+            data: dataChart,
+    backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)'
+
+            ],
+            borderWidth: 1,
+            hoverOffset: 4,
+            options:options
+        }]
+    }
+
+});
+</script>
+<!--[/main]-->
