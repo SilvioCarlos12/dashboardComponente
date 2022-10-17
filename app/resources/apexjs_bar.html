@@ -1,0 +1,24 @@
+<!--[main]-->
+<div id="chart_bar_div_{$uniqid}"  class="chart" style="width:{$width}; height:{$height};">
+</div>
+<script>
+const data={$data|raw}
+const label=data.map(d=>d[0]).filter((d,index)=>index>0)
+const dataChart=data.map(d=>d[1]).filter((d,index)=>index>0)
+var options = {
+    chart: {
+        type: 'bar'
+    },
+    series: [{
+        name: '{$title}',
+        data: dataChart
+    }],
+    xaxis: {
+        categories: label
+    }
+}
+var chart = new ApexCharts(document.querySelector("#chart_bar_div_{$uniqid}"), options);
+chart.render();
+</script>
+
+<!--[/main]-->
